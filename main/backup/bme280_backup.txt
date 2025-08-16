@@ -1,0 +1,44 @@
+#include <Wire.h>
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME280.h>
+
+#define BME_SDA 41
+#define BME_SCL 42
+#define BME_I2C_ADDRESS 0x76
+
+TwoWire Wire2(1);
+Adafruit_BME280 bme;
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("BME280 ID Test");
+
+  Wire2.begin(BME_SDA, BME_SCL);
+  Wire2.setClock(100000);
+
+  if (!bme.begin(BME_I2C_ADDRESS, &Wire2)) {
+    Serial.println("Could not find a valid BME280 sensor!");
+    Serial.println("Check wiring and address.");
+    while (1);
+  }
+
+  Serial.print("BME280 Sensor ID: 0x");
+  Serial.println(bme.sensorID(), 16);
+}
+
+void loop() {
+  Serial.print("Temperatura: ");
+  Serial.print(bme.readTemperature());
+  Serial.println(" °C");
+
+  Serial.print("Pressão: ");
+  Serial.print(bme.readPressure() / 100.0F);  // hPa
+  Serial.println(" hPa");
+
+  Serial.print("Umidade: ");
+  Serial.print(bme.readHumidity());
+  Serial.println(" %");
+
+  Serial.println("----------------------------");
+  delay(2000);  // Espera 2 segundos antes de ler novamente
+}

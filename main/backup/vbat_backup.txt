@@ -1,0 +1,20 @@
+#define VBAT_PIN 1 // GPIO1
+float readVBAT() {
+  int raw = analogRead(VBAT_PIN);
+  float vAdc = (raw / 4095.0) * 3.3; // tensão lida na entrada ADC
+  float vbat = vAdc*1.16;           // corrige pelo erro atrelado
+  return vbat;
+}
+
+void setup() {
+  Serial.begin(115200);
+  analogReadResolution(12); // ESP32-S3: ADC resolution (0–4095)
+}
+
+void loop() {
+  float batteryVoltage = readVBAT();
+  Serial.print("Battery Voltage: ");
+  Serial.print(batteryVoltage);
+  Serial.println(" V");
+  delay(2000);
+}
