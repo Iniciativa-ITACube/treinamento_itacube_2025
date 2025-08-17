@@ -28,7 +28,7 @@ Baixar as bibliotecas necessárias:
 - ESP32Servo (by Kevin Harrington) (3.0.8)
 - ESP8266 and ESP32 OLED driver for SSD1306 displays (by ThingPulse, Fabrice Weinberg) (4.6.1)
 - Heltec ESP32 Dev-Boards (by Heltec Automation) (2.1.4)
-	- # essa biblioteca tem uma segunda declaração de TinyGPS e entra em conflito CUIDADO!
+	- ### essa biblioteca tem uma segunda declaração de TinyGPS e entra em conflito CUIDADO!
 - Heltec_ESP32_LoRa_v3 (by Rop Gonggrijp) (0.9.2)
 - HotButton (by Rop Gonggriip) (0.1.1)
 - MPU9250_asukiaaa (by Asuki Kono) (1.5.13)
